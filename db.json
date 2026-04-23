@@ -1,0 +1,137 @@
+{
+  "accounts": [
+    {
+      "id": "acc_1",
+      "accountNumber": "T0866616877",
+      "ownerName": "Nguyễn Vũ B",
+      "balance": 55001845,
+      "status": "Active",
+      "createdAt": "2026-04-14T18:38:26.6322133",
+      "withdrawLimit": 499876877,
+      "lastWithdrawDate": "2026-04-14T18:45:25.1390863",
+      "lastAddInterestMonthlyDate": "2026-04-14T18:38:26.6336318",
+      "interestMonthly": 48117.12,
+      "amount": 1000000
+    },
+    {
+      "id": "acc_2",
+      "accountNumber": "T0973585899",
+      "ownerName": "Lê T",
+      "balance": 3000000000,
+      "status": "Active",
+      "createdAt": "2026-04-14T18:38:26.6337381",
+      "withdrawLimit": 500000000,
+      "lastWithdrawDate": "0001-01-01T00:00:00",
+      "lastAddInterestMonthlyDate": "2026-04-14T18:38:26.6337383",
+      "interestMonthly": 0
+    },
+    {
+      "id": "acc_3",
+      "accountNumber": "T0973856738",
+      "ownerName": "Nguyễn Văn A",
+      "balance": 190,
+      "status": "Active",
+      "createdAt": "2026-04-14T18:38:26.6337385",
+      "withdrawLimit": 500000000,
+      "lastWithdrawDate": "0001-01-01T00:00:00",
+      "lastAddInterestMonthlyDate": "2026-04-14T18:38:26.6337386",
+      "interestMonthly": 0
+    },
+    {
+      "id": "acc_4",
+      "accountNumber": "T0987654333",
+      "ownerName": "Nguyễn Khánh",
+      "balance": 90,
+      "status": "Active",
+      "createdAt": "2026-04-14T18:38:26.6337387",
+      "withdrawLimit": 500000000,
+      "lastWithdrawDate": "0001-01-01T00:00:00",
+      "lastAddInterestMonthlyDate": "2026-04-14T18:38:26.6337387",
+      "interestMonthly": 0
+    },
+    {
+      "id": "acc_5",
+      "accountNumber": "T1",
+      "ownerName": "Long test",
+      "balance": 3123123,
+      "status": "Active",
+      "createdAt": "2026-04-14T18:45:10.0651569",
+      "withdrawLimit": 500000000,
+      "lastWithdrawDate": "0001-01-01T00:00:00",
+      "lastAddInterestMonthlyDate": "2026-04-14T18:45:10.0651049",
+      "interestMonthly": 8214.24
+    },
+    {
+      "id": "acc_6",
+      "accountNumber": "T2",
+      "ownerName": "22",
+      "balance": 222,
+      "status": "Active",
+      "createdAt": "2026-04-14T19:43:59.3824985",
+      "withdrawLimit": 500000000,
+      "lastWithdrawDate": "0001-01-01T00:00:00",
+      "lastAddInterestMonthlyDate": "2026-04-14T19:43:59.3823159",
+      "interestMonthly": 0.5
+    },
+    {
+      "id": "acc_7",
+      "accountNumber": "T3",
+      "ownerName": "Long3",
+      "balance": 6666
+    },
+    {
+      "accountNumber": "T4",
+      "ownerName": "LongLong",
+      "balance": 1111,
+      "id": "HJeg9qgWyvw"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "trx_1",
+      "transactionId": 1,
+      "type": "Deposit",
+      "amount": 17000000,
+      "transactionDate": "2026-04-14T18:39:07.4787913",
+      "description": null,
+      "accountNumber": "T0866616877"
+    },
+    {
+      "id": "trx_2",
+      "transactionId": 2,
+      "type": "Withdrawal",
+      "amount": 123123,
+      "transactionDate": "2026-04-14T18:45:25.1392791",
+      "description": null,
+      "accountNumber": "T0866616877"
+    },
+    {
+      "id": "trx_3",
+      "transactionId": 3,
+      "type": "Deposit",
+      "amount": 123123,
+      "transactionDate": "2026-04-14T18:45:25.1393653",
+      "description": null,
+      "accountNumber": "T1"
+    },
+    {
+      "id": "trx_4",
+      "transactionId": 4,
+      "type": "Deposit",
+      "amount": 1312,
+      "transactionDate": "2026-04-14T19:48:15.9125390",
+      "description": null,
+      "accountNumber": "T0866616877"
+    },
+    {
+      "id": "trx_5",
+      "transactionId": 5,
+      "type": "Transfer",
+      "amount": 1312,
+      "transactionDate": "2026-04-14T19:48:15.9125390",
+      "description": "Transfer to T2",
+      "accountNumber": "T0866616877"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
