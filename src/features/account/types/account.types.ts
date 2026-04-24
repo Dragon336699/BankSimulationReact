@@ -17,3 +17,15 @@ export interface DepositRequest {
     accountNumber: string;
     amount: number;
 }
+
+export interface WithdrawRequest {
+    accountNumber: string;
+    amount: number;
+}
+
+export interface TransferRequest {
+    sourceAccountNumber: string;
+    destinationAccountNumber: string;
+    amount: number;
+    description: string;
+}

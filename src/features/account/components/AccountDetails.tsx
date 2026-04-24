@@ -2,7 +2,6 @@ import GenericCard from "../../../components/Antd/Cards/GenericCard";
 import type { AccountResponse } from "../types/account.types";
 
 type Props = {
-    accountNumber: string;
     accountDetails: AccountResponse;
 }
 

@@ -4,7 +4,7 @@
       "id": "acc_1",
       "accountNumber": "T0866616877",
       "ownerName": "Nguyễn Vũ B",
-      "balance": 55001845,
+      "balance": 553973877,
       "status": "Active",
       "createdAt": "2026-04-14T18:38:26.6322133",
       "withdrawLimit": 499876877,
@@ -17,7 +17,7 @@
       "id": "acc_2",
       "accountNumber": "T0973585899",
       "ownerName": "Lê T",
-      "balance": 3000000000,
+      "balance": 2400000000,
       "status": "Active",
       "createdAt": "2026-04-14T18:38:26.6337381",
       "withdrawLimit": 500000000,
@@ -41,7 +41,7 @@
       "id": "acc_4",
       "accountNumber": "T0987654333",
       "ownerName": "Nguyễn Khánh",
-      "balance": 90,
+      "balance": 970,
       "status": "Active",
       "createdAt": "2026-04-14T18:38:26.6337387",
       "withdrawLimit": 500000000,
@@ -53,7 +53,7 @@
       "id": "acc_5",
       "accountNumber": "T1",
       "ownerName": "Long test",
-      "balance": 3123123,
+      "balance": 2993360,
       "status": "Active",
       "createdAt": "2026-04-14T18:45:10.0651569",
       "withdrawLimit": 500000000,
@@ -65,7 +65,7 @@
       "id": "acc_6",
       "accountNumber": "T2",
       "ownerName": "22",
-      "balance": 222,
+      "balance": 51123205,
       "status": "Active",
       "createdAt": "2026-04-14T19:43:59.3824985",
       "withdrawLimit": 500000000,
@@ -82,55 +82,40 @@
     {
       "accountNumber": "T4",
       "ownerName": "LongLong",
-      "balance": 1111,
+      "balance": 201,
       "id": "HJeg9qgWyvw"
+    },
+    {
+      "accountNumber": "T5",
+      "ownerName": "Long5",
+      "balance": 1000,
+      "id": "EvPNzaaZBHo"
     }
   ],
   "transactions": [
     {
-      "id": "trx_1",
-      "transactionId": 1,
+      "accountNumber": "T0866616877",
       "type": "Deposit",
-      "amount": 17000000,
-      "transactionDate": "2026-04-14T18:39:07.4787913",
-      "description": null,
-      "accountNumber": "T0866616877"
+      "amount": 100000,
+      "transactionDate": "2026-04-24T08:08:13.206Z",
+      "description": "Deposit money",
+      "id": "F5Yt0B9siS4"
     },
     {
-      "id": "trx_2",
-      "transactionId": 2,
-      "type": "Withdrawal",
-      "amount": 123123,
-      "transactionDate": "2026-04-14T18:45:25.1392791",
-      "description": null,
-      "accountNumber": "T0866616877"
+      "accountNumber": "T0866616877",
+      "type": "Withdraw",
+      "amount": 2000,
+      "transactionDate": "2026-04-24T08:08:18.718Z",
+      "description": "Withdraw money",
+      "id": "5K19bPvsQYI"
     },
     {
-      "id": "trx_3",
-      "transactionId": 3,
-      "type": "Deposit",
-      "amount": 123123,
-      "transactionDate": "2026-04-14T18:45:25.1393653",
-      "description": null,
-      "accountNumber": "T1"
-    },
-    {
-      "id": "trx_4",
-      "transactionId": 4,
-      "type": "Deposit",
-      "amount": 1312,
-      "transactionDate": "2026-04-14T19:48:15.9125390",
-      "description": null,
-      "accountNumber": "T0866616877"
-    },
-    {
-      "id": "trx_5",
-      "transactionId": 5,
+      "accountNumber": "T0973585899",
       "type": "Transfer",
-      "amount": 1312,
-      "transactionDate": "2026-04-14T19:48:15.9125390",
-      "description": "Transfer to T2",
-      "accountNumber": "T0866616877"
+      "amount": 50000000,
+      "transactionDate": "2026-04-24T08:09:02.328Z",
+      "description": "Transfer 50000000 to T2",
+      "id": "VCSIWoOc__A"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -1,27 +1,12 @@
-import { useEffect, useState } from "react";
-import type {
-  TransactionResponse,
-  TransactionType,
-} from "../types/transaction.types";
-import { transactionApi } from "../apis/transaction.api";
+import type { TransactionResponse, TransactionType } from "../../transaction/types/transaction.types";
+import GenericCard from "../../../components/Antd/Cards/GenericCard";
 import { Table } from "antd";
 
-export default function TransactionList() {
-  const [transactions, setTransactions] = useState<TransactionResponse[]>([]);
-
-  useEffect(() => {
-    const getTransactions = async () => {
-      try {
-        const res = await transactionApi.getAllTransactions();
-        setTransactions(res.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    getTransactions();
-  }, []);
-
+export default function TransactionHistory({
+  transactions,
+}: {
+  transactions: TransactionResponse[];
+}) {
   const columns = [
     {
       title: "Account Number",
@@ -54,7 +39,7 @@ export default function TransactionList() {
       title: "Transaction Date",
       dataIndex: "transactionDate",
       key: "transactionDate",
-      render: (value: string) => new Date(value).toLocaleString(),
+      render: (value: Date) => new Date(value).toLocaleString(),
     },
     {
       title: "Description",
@@ -63,5 +48,9 @@ export default function TransactionList() {
     },
   ];
 
-  return <Table dataSource={transactions} columns={columns}></Table>;
+  return (
+    <GenericCard title="Transaction History">
+      <Table dataSource={transactions} columns={columns}></Table>
+    </GenericCard>
+  );
 }

@@ -9,10 +9,6 @@ const Navbar: React.FC = () => {
 
   const menuItems: MenuProps["items"] = [
     {
-      key: "/",
-      label: <Link to="/">Home</Link>,
-    },
-    {
       key: "/accounts",
       label: <Link to="/accounts">Account</Link>,
     },

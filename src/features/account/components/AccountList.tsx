@@ -44,8 +44,8 @@ export default function AccountList() {
       title: "Details",
       key: "action",
       render: (record: AccountResponse) => (
-        <Link to={`/account/details/${record.accountNumber}`}>
-          <Button type="link">View Details</Button>
+        <Link className="p-0" to={`/account/details/${record.accountNumber}`}>
+          <Button className="p-0">View Details</Button>
         </Link>
       ),
     },

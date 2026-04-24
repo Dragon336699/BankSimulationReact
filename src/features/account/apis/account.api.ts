@@ -17,5 +17,12 @@ export const accountApi = {
     },
     async deposit(newBalance: number, userId: string) {
         await apiClient.patch(`accounts/${userId}`, {balance: newBalance});
+    },
+    async withdraw(newBalance: number, userId: string) {
+        await apiClient.patch(`accounts/${userId}`, {balance: newBalance});
+    },
+    async transfer(sourceAccountId: string, destinationAccountId: string, sourceBalance: number, destinationBalance: number) {
+        await apiClient.patch(`accounts/${sourceAccountId}`, {balance: sourceBalance});
+        await apiClient.patch(`accounts/${destinationAccountId}`, {balance: destinationBalance});
     }
 }
