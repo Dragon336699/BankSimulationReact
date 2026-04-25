@@ -1,12 +1,12 @@
+import { Badge } from "antd";
 import GenericCard from "../../../components/Antd/Cards/GenericCard";
 import type { AccountResponse } from "../types/account.types";
 
 type Props = {
-    accountDetails: AccountResponse;
-}
+  accountDetails: AccountResponse;
+};
 
 export function AccountDetails({ accountDetails }: Props) {
-
   return (
     <>
       <GenericCard title="Account Information">
@@ -25,9 +25,14 @@ export function AccountDetails({ accountDetails }: Props) {
           >
             {accountDetails?.balance?.toLocaleString()} $
           </span>
-        </p><p className="font-bold">
+        </p>
+        <p className="font-bold">
           Status:{" "}
-          <span className={`font-normal ${accountDetails?.status === 'Frozen' ? "text-red-600" : "text-green-600"}`}>{accountDetails?.status}</span>
+          <Badge
+            style={{ marginBottom: "3px" }}
+            color={accountDetails?.status === "Frozen" ? "red" : "green"}
+            count={accountDetails?.status}
+          />
         </p>
       </GenericCard>
     </>

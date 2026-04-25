@@ -4,31 +4,40 @@ import type {
 } from "../../transaction/types/transaction.types";
 import GenericCard from "../../../components/Antd/Cards/GenericCard";
 import { Table, Select } from "antd";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 export default function TransactionHistory({
   transactions,
 }: {
   transactions: TransactionResponse[];
 }) {
-  const options = [];
+  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
 
-  const [filteredTransaction, setFilteredTransactions] = useState<TransactionResponse[]>(transactions);
+  const options = [
+    { label: "Deposit", value: "Deposit" },
+    { label: "Withdraw", value: "Withdraw" },
+    { label: "Transfer", value: "Transfer" },
+  ];
 
-  options.push(
-    {
-      label: "Deposit",
-      value: "Deposit",
-    },
-    {
-      label: "Withdraw",
-      value: "Withdraw",
-    },
-    {
-      label: "Transfer",
-      value: "Transfer",
-    },
+  transactions.sort(
+    (a, b) =>
+      new Date(b.transactionDate).getTime() -
+      new Date(a.transactionDate).getTime(),
   );
+
+  const filteredTransaction = useMemo(() => {
+    let data = [...transactions].sort(
+      (a, b) =>
+        new Date(b.transactionDate).getTime() -
+        new Date(a.transactionDate).getTime(),
+    );
+
+    if (selectedTypes.length > 0) {
+      data = data.filter((t) => selectedTypes.includes(t.type));
+    }
+
+    return data;
+  }, [transactions, selectedTypes]);
 
   const columns = [
     {
@@ -71,15 +80,6 @@ export default function TransactionHistory({
     },
   ];
 
-  const handleFilter = (value: string[]) => {
-    if (value.length === 0) {
-      return setFilteredTransactions(transactions);
-    } 
-
-    const filtered = transactions.filter(t => value.includes(t.type));
-    setFilteredTransactions(filtered);
-  };
-
   return (
     <GenericCard title="Transaction History">
       <Select
@@ -87,7 +87,7 @@ export default function TransactionHistory({
         allowClear
         style={{ width: "100%" }}
         placeholder="Please select type of transaction you want to filter"
-        onChange={handleFilter}
+        onChange={setSelectedTypes}
         options={options}
       />
       <Table dataSource={filteredTransaction} columns={columns}></Table>

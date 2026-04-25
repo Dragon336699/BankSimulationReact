@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Table } from "antd";
+import { Badge, Button, Table } from "antd";
 import { accountApi } from "../apis/account.api";
 import type { AccountResponse, AccountStatus } from "../types/account.types";
 import { Link } from "react-router";
@@ -76,7 +76,7 @@ export default function AccountList() {
         <span
           className={value === "Frozen" ? "text-red-600" : "text-green-600"}
         >
-          {value}
+          <Badge className="mb-2" color={value === "Frozen" ? "red" : "green"} count={value} />
         </span>
       ),
     },
@@ -85,7 +85,7 @@ export default function AccountList() {
       key: "action",
       render: (record: AccountResponse) => (
         <Button
-        className="w-[100px]"
+          className="w-[100px]"
           onClick={() => toggleStatus(record)}
           type={record.status === "Frozen" ? "primary" : "primary"}
           danger={record.status !== "Frozen"}

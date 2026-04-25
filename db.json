@@ -4,24 +4,23 @@
       "id": "acc_1",
       "accountNumber": "T0866616877",
       "ownerName": "Nguyễn Vũ B",
-      "balance": 552973627,
+      "balance": 552900000,
       "status": "Active",
       "createdAt": "2026-04-14T18:38:26.6322133",
-      "withdrawLimit": 499504,
+      "withdrawLimit": 425877,
       "lastWithdrawDate": "2026-04-25T13:18:02.938Z",
       "lastAddInterestMonthlyDate": "2026-04-14T18:38:26.6336318",
-      "interestMonthly": 48117.12,
-      "amount": 1000000
+      "interestMonthly": 48117.12
     },
     {
       "id": "acc_2",
       "accountNumber": "T0973585899",
       "ownerName": "Lê T",
-      "balance": 2400000000,
+      "balance": 3399999990,
       "status": "Active",
       "createdAt": "2026-04-14T18:38:26.6337381",
-      "withdrawLimit": 500000,
-      "lastWithdrawDate": "0001-01-01T00:00:00",
+      "withdrawLimit": 499890,
+      "lastWithdrawDate": "2026-04-25T14:52:42.391Z",
       "lastAddInterestMonthlyDate": "2026-04-14T18:38:26.6337383",
       "interestMonthly": 0
     },
@@ -65,7 +64,7 @@
       "id": "acc_6",
       "accountNumber": "T2",
       "ownerName": "22",
-      "balance": 52123574,
+      "balance": 52123461,
       "status": "Active",
       "createdAt": "2026-04-14T19:43:59.3824985",
       "withdrawLimit": 500000,
@@ -100,7 +99,7 @@
     {
       "accountNumber": "T5",
       "ownerName": "Long5",
-      "balance": 1000,
+      "balance": 74000,
       "status": "Active",
       "id": "EvPNzaaZBHo",
       "createdAt": "2026-04-14T19:43:59.3824985",
@@ -279,6 +278,46 @@
       "amount": 123,
       "transactionDate": "2026-04-25T13:33:31.758Z",
       "id": "KrxAJQkE6Hg"
+    },
+    {
+      "accountNumber": "T0866616877",
+      "type": "Withdraw",
+      "amount": 627,
+      "transactionDate": "2026-04-25T14:50:28.590Z",
+      "description": "Withdraw money",
+      "id": "1xpM4XIcMI8"
+    },
+    {
+      "accountNumber": "T0973585899",
+      "type": "Deposit",
+      "amount": 1000000000,
+      "transactionDate": "2026-04-25T14:52:30.286Z",
+      "description": "Deposit money",
+      "id": "DXwbsne_jDw"
+    },
+    {
+      "accountNumber": "T0973585899",
+      "type": "Withdraw",
+      "amount": 100,
+      "transactionDate": "2026-04-25T14:52:42.405Z",
+      "description": "Withdraw money",
+      "id": "IrqBwVgd0lQ"
+    },
+    {
+      "accountNumber": "T0973585899",
+      "type": "Deposit",
+      "amount": 100,
+      "transactionDate": "2026-04-25T14:52:51.498Z",
+      "description": "Deposit money",
+      "id": "B6PQy3MCFTg"
+    },
+    {
+      "accountNumber": "T0866616877",
+      "type": "Transfer",
+      "amount": 73000,
+      "transactionDate": "2026-04-25T14:53:45.214Z",
+      "description": "Chuyển cho T5 73k đô",
+      "id": "rQrXgJSdKZk"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
