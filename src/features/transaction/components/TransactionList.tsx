@@ -5,15 +5,35 @@ import type {
 } from "../types/transaction.types";
 import { transactionApi } from "../apis/transaction.api";
 import { Table } from "antd";
+import { Select } from "antd";
 
 export default function TransactionList() {
   const [transactions, setTransactions] = useState<TransactionResponse[]>([]);
+
+  const [filteredTransactions, setFilteredTransactions] = useState<
+    TransactionResponse[]
+  >([]);
+  const options = [
+    {
+      label: "Deposit",
+      value: "Deposit",
+    },
+    {
+      label: "Withdraw",
+      value: "Withdraw",
+    },
+    {
+      label: "Transfer",
+      value: "Transfer",
+    },
+  ];
 
   useEffect(() => {
     const getTransactions = async () => {
       try {
         const res = await transactionApi.getAllTransactions();
         setTransactions(res.data);
+        setFilteredTransactions(res.data);
       } catch (err) {
         console.log(err);
       }
@@ -63,5 +83,26 @@ export default function TransactionList() {
     },
   ];
 
-  return <Table dataSource={transactions} columns={columns}></Table>;
+  const handleFilter = (value: TransactionType[]) => {
+    if (value.length === 0) {
+      return setFilteredTransactions(transactions);
+    }
+
+    const filtered = transactions.filter((t) => value.includes(t.type as TransactionType));
+    setFilteredTransactions(filtered);
+  };
+
+  return (
+    <>
+      <Select
+        mode="multiple"
+        allowClear
+        style={{ width: "100%" }}
+        placeholder="Please select type of transaction you want to filter"
+        onChange={handleFilter}
+        options={options}
+      />
+      <Table rowKey="id" dataSource={filteredTransactions} columns={columns}></Table>;
+    </>
+  );
 }

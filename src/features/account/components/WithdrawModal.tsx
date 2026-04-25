@@ -27,6 +27,10 @@ export function WithdrawModal({ open, onClose, accountNumber }: Props) {
             "error",
             "Insufficient funds! Minimum balance must be 100!",
           );
+        } else if (error.message === "FRONZEN_ACCOUNT") {
+          showMessage("error", "Account is frozen!");
+        } else if (error.message === "WITHDRAW_LIMIT_EXCEEDED") {
+          showMessage("error", "You have exceeded the withdraw limit today!");
         } else {
           showMessage("error", "Withdraw failed!");
         }

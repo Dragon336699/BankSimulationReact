@@ -25,6 +25,9 @@ export function AccountDetails({ accountDetails }: Props) {
           >
             {accountDetails?.balance?.toLocaleString()} $
           </span>
+        </p><p className="font-bold">
+          Status:{" "}
+          <span className={`font-normal ${accountDetails?.status === 'Frozen' ? "text-red-600" : "text-green-600"}`}>{accountDetails?.status}</span>
         </p>
       </GenericCard>
     </>

@@ -4,11 +4,11 @@
       "id": "acc_1",
       "accountNumber": "T0866616877",
       "ownerName": "Nguyễn Vũ B",
-      "balance": 553973877,
+      "balance": 552973627,
       "status": "Active",
       "createdAt": "2026-04-14T18:38:26.6322133",
-      "withdrawLimit": 499876877,
-      "lastWithdrawDate": "2026-04-14T18:45:25.1390863",
+      "withdrawLimit": 499504,
+      "lastWithdrawDate": "2026-04-25T13:18:02.938Z",
       "lastAddInterestMonthlyDate": "2026-04-14T18:38:26.6336318",
       "interestMonthly": 48117.12,
       "amount": 1000000
@@ -20,7 +20,7 @@
       "balance": 2400000000,
       "status": "Active",
       "createdAt": "2026-04-14T18:38:26.6337381",
-      "withdrawLimit": 500000000,
+      "withdrawLimit": 500000,
       "lastWithdrawDate": "0001-01-01T00:00:00",
       "lastAddInterestMonthlyDate": "2026-04-14T18:38:26.6337383",
       "interestMonthly": 0
@@ -29,10 +29,10 @@
       "id": "acc_3",
       "accountNumber": "T0973856738",
       "ownerName": "Nguyễn Văn A",
-      "balance": 190,
-      "status": "Active",
+      "balance": 80,
+      "status": "Frozen",
       "createdAt": "2026-04-14T18:38:26.6337385",
-      "withdrawLimit": 500000000,
+      "withdrawLimit": 500000,
       "lastWithdrawDate": "0001-01-01T00:00:00",
       "lastAddInterestMonthlyDate": "2026-04-14T18:38:26.6337386",
       "interestMonthly": 0
@@ -42,9 +42,9 @@
       "accountNumber": "T0987654333",
       "ownerName": "Nguyễn Khánh",
       "balance": 970,
-      "status": "Active",
+      "status": "Frozen",
       "createdAt": "2026-04-14T18:38:26.6337387",
-      "withdrawLimit": 500000000,
+      "withdrawLimit": 500000,
       "lastWithdrawDate": "0001-01-01T00:00:00",
       "lastAddInterestMonthlyDate": "2026-04-14T18:38:26.6337387",
       "interestMonthly": 0
@@ -54,9 +54,9 @@
       "accountNumber": "T1",
       "ownerName": "Long test",
       "balance": 2993360,
-      "status": "Active",
+      "status": "Frozen",
       "createdAt": "2026-04-14T18:45:10.0651569",
-      "withdrawLimit": 500000000,
+      "withdrawLimit": 500000,
       "lastWithdrawDate": "0001-01-01T00:00:00",
       "lastAddInterestMonthlyDate": "2026-04-14T18:45:10.0651049",
       "interestMonthly": 8214.24
@@ -65,10 +65,10 @@
       "id": "acc_6",
       "accountNumber": "T2",
       "ownerName": "22",
-      "balance": 51123205,
+      "balance": 52123574,
       "status": "Active",
       "createdAt": "2026-04-14T19:43:59.3824985",
-      "withdrawLimit": 500000000,
+      "withdrawLimit": 500000,
       "lastWithdrawDate": "0001-01-01T00:00:00",
       "lastAddInterestMonthlyDate": "2026-04-14T19:43:59.3823159",
       "interestMonthly": 0.5
@@ -77,19 +77,47 @@
       "id": "acc_7",
       "accountNumber": "T3",
       "ownerName": "Long3",
-      "balance": 6666
+      "status": "Active",
+      "balance": 12,
+      "createdAt": "2026-04-14T19:43:59.3824985",
+      "withdrawLimit": 500000,
+      "lastWithdrawDate": "0001-01-01T00:00:00",
+      "lastAddInterestMonthlyDate": "2026-04-14T19:43:59.3823159",
+      "interestMonthly": 0.5
     },
     {
       "accountNumber": "T4",
       "ownerName": "LongLong",
-      "balance": 201,
-      "id": "HJeg9qgWyvw"
+      "balance": 67,
+      "status": "Active",
+      "id": "HJeg9qgWyvw",
+      "createdAt": "2026-04-14T19:43:59.3824985",
+      "withdrawLimit": 500000,
+      "lastWithdrawDate": "0001-01-01T00:00:00",
+      "lastAddInterestMonthlyDate": "2026-04-14T19:43:59.3823159",
+      "interestMonthly": 0.5
     },
     {
       "accountNumber": "T5",
       "ownerName": "Long5",
       "balance": 1000,
-      "id": "EvPNzaaZBHo"
+      "status": "Active",
+      "id": "EvPNzaaZBHo",
+      "createdAt": "2026-04-14T19:43:59.3824985",
+      "withdrawLimit": 500000,
+      "lastWithdrawDate": "0001-01-01T00:00:00",
+      "lastAddInterestMonthlyDate": "2026-04-14T19:43:59.3823159",
+      "interestMonthly": 0.5
+    },
+    {
+      "accountNumber": "LastTest123123",
+      "ownerName": "LongTest",
+      "balance": 13499877,
+      "createdAt": "2026-04-25T13:18:34.506Z",
+      "withdrawLimit": 0,
+      "status": "Active",
+      "lastWithdrawDate": "2026-04-25T13:18:34.506Z",
+      "id": "ghDj7Tnxr7E"
     }
   ],
   "transactions": [
@@ -116,6 +144,141 @@
       "transactionDate": "2026-04-24T08:09:02.328Z",
       "description": "Transfer 50000000 to T2",
       "id": "VCSIWoOc__A"
+    },
+    {
+      "accountNumber": "T0866616877",
+      "type": "Transfer",
+      "amount": 1000000,
+      "transactionDate": "2026-04-25T12:17:22.353Z",
+      "description": "Chuyển nhé",
+      "id": "NC4u_W-RjaE"
+    },
+    {
+      "accountNumber": "LastTest123123",
+      "type": "Withdraw",
+      "amount": 499999,
+      "transactionDate": "2026-04-25T13:20:59.785Z",
+      "description": "Withdraw money",
+      "id": "NC9nFRF2LGA"
+    },
+    {
+      "accountNumber": "LastTest123123",
+      "type": "Withdraw",
+      "amount": 11,
+      "transactionDate": "2026-04-25T13:21:02.868Z",
+      "description": "Withdraw money",
+      "id": "J9CCkr_GOfY"
+    },
+    {
+      "accountNumber": "LastTest123123",
+      "type": "Withdraw",
+      "amount": 11,
+      "transactionDate": "2026-04-25T13:21:05.938Z",
+      "description": "Withdraw money",
+      "id": "XmeSelMimOo"
+    },
+    {
+      "accountNumber": "LastTest123123",
+      "type": "Deposit",
+      "amount": 21,
+      "transactionDate": "2026-04-25T13:22:22.565Z",
+      "description": "Deposit money",
+      "id": "atVHZ63F2A4"
+    },
+    {
+      "accountNumber": "LastTest123123",
+      "type": "Deposit",
+      "amount": 5000000,
+      "transactionDate": "2026-04-25T13:22:28.279Z",
+      "description": "Deposit money",
+      "id": "v0rnSAf8M8I"
+    },
+    {
+      "accountNumber": "LastTest123123",
+      "type": "Withdraw",
+      "amount": 500000,
+      "transactionDate": "2026-04-25T13:22:40.096Z",
+      "description": "Withdraw money",
+      "id": "eCFo8DTkXN4"
+    },
+    {
+      "accountNumber": "LastTest123123",
+      "type": "Withdraw",
+      "amount": 123,
+      "transactionDate": "2026-04-25T13:22:42.788Z",
+      "description": "Withdraw money",
+      "id": "0KILBvOiUak"
+    },
+    {
+      "accountNumber": "LastTest123123",
+      "type": "Deposit",
+      "amount": 123,
+      "transactionDate": "2026-04-25T13:22:56.250Z",
+      "description": "Deposit money",
+      "id": "0bCuS3dgpaY"
+    },
+    {
+      "accountNumber": "LastTest123123",
+      "type": "Withdraw",
+      "amount": 500000,
+      "transactionDate": "2026-04-25T13:23:02.563Z",
+      "description": "Withdraw money",
+      "id": "nB902TWsKUc"
+    },
+    {
+      "accountNumber": "LastTest123123",
+      "type": "Transfer",
+      "amount": 123,
+      "transactionDate": "2026-04-25T13:23:13.612Z",
+      "description": "123",
+      "id": "7Atzasyab8c"
+    },
+    {
+      "accountNumber": "T0866616877",
+      "type": "Withdraw",
+      "amount": 123,
+      "transactionDate": "2026-04-25T13:30:33.151Z",
+      "description": "Withdraw money",
+      "id": "Ok861f_xuSo"
+    },
+    {
+      "accountNumber": "T0866616877",
+      "type": "Deposit",
+      "amount": 123,
+      "transactionDate": "2026-04-25T13:32:26.261Z",
+      "description": "Deposit money",
+      "id": "hkmKPvWH-pk"
+    },
+    {
+      "accountNumber": "T0866616877",
+      "type": "Withdraw",
+      "amount": 123,
+      "transactionDate": "2026-04-25T13:32:36.857Z",
+      "description": "Withdraw money",
+      "id": "r6Rh8ylDbsk"
+    },
+    {
+      "accountNumber": "T0866616877",
+      "type": "Deposit",
+      "amount": 123,
+      "transactionDate": "2026-04-25T13:32:46.576Z",
+      "description": "Deposit money",
+      "id": "bh1RX_da6LQ"
+    },
+    {
+      "accountNumber": "T0866616877",
+      "type": "Withdraw",
+      "amount": 4,
+      "transactionDate": "2026-04-25T13:32:56.430Z",
+      "description": "Withdraw money",
+      "id": "oGG939IKJkA"
+    },
+    {
+      "accountNumber": "T0866616877",
+      "type": "Transfer",
+      "amount": 123,
+      "transactionDate": "2026-04-25T13:33:31.758Z",
+      "id": "KrxAJQkE6Hg"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

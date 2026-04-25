@@ -7,7 +7,13 @@ type Props = {
 
 export default function AccountForm({ onSubmit }: Props) {
   const handleSubmit = (values: CreateAccountRequest) => {
-    onSubmit(values);
+    onSubmit({
+      ...values,
+      createdAt: new Date(),
+      withdrawLimit: 500000,
+      lastWithdrawDate: new Date(),
+      status: 'Active'
+    });
   };
 
   return (

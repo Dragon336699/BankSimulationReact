@@ -18,17 +18,28 @@ export default function TransferModal({
   const { contextHolder, showMessage } = useAppMessage();
   const handleSubmit = async (values: TransferRequest) => {
     try {
-        await transferMoney(values);
+      await transferMoney(values);
     } catch (error: unknown) {
       if (error instanceof Error) {
         if (error.message === "SOURCE_ACCOUNT_NOT_FOUND") {
           showMessage("error", "Source account number does not exist!");
+        } else if (error.message === "SAME_ACCOUNT") {
+          showMessage(
+            "error",
+            "Source account and destination account cannot be same!",
+          );
         } else if (error.message === "DESTINATION_ACCOUNT_NOT_FOUND") {
           showMessage("error", "Destination account number does not exist!");
         } else if (error.message === "INVALID_AMOUNT") {
           showMessage("error", "Invalid amount!");
         } else if (error.message === "INSUFFICIENT_FUNDS") {
           showMessage("error", "Insufficient funds!");
+        } else if (error.message === "FRONZEN_SOURCEACCOUNT") {
+          showMessage("error", "Source account is frozen!");
+        } else if (error.message === "WITHDRAW_LIMIT_EXCEEDED") {
+          showMessage("error", "You have exceeded the withdraw limit today!");
+        } else if (error.message === "FRONZEN_DESACCOUNT") {
+          showMessage("error", "Destination account is frozen!");
         } else {
           showMessage("error", "Transfer failed!");
         }

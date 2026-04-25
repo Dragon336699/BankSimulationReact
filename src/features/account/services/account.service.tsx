@@ -1,17 +1,66 @@
 import { transactionApi } from "../../transaction/apis/transaction.api";
 import { accountApi } from "../apis/account.api";
-import type { DepositRequest, TransferRequest } from "../types/account.types";
+import type {
+  AccountResponse,
+  DepositRequest,
+  TransferRequest,
+} from "../types/account.types";
+
+/* ================== COMMON VALIDATION ================== */
+
+const validateAccount = (user: AccountResponse, error: string) => {
+  if (!user) throw new Error(error);
+};
+
+const validateAmount = (amount: number) => {
+  if (amount <= 0) throw new Error("INVALID_AMOUNT");
+};
+
+const validateStatus = (status: string, error: string) => {
+  if (status === "Frozen") throw new Error(error);
+};
+
+const validateBalance = (balance: number) => {
+  if (balance < 100) throw new Error("INSUFFICIENT_FUNDS");
+};
+
+/* ================== WITHDRAW RULE ================== */
+
+const isNewDayCheck = (lastDate: Date | string) => {
+  if (!lastDate || lastDate === "0001-01-01T00:00:00") return true;
+
+  const last = new Date(lastDate);
+  const now = new Date();
+
+  return (
+    last.getFullYear() !== now.getFullYear() ||
+    last.getMonth() !== now.getMonth() ||
+    last.getDate() !== now.getDate()
+  );
+};
+
+const handleWithdrawLimit = async (user: AccountResponse, amount: number) => {
+  if (isNewDayCheck(user.lastWithdrawDate)) {
+    await accountApi.resetWithdrawLimit(user.id);
+  }
+
+  const newLimit = user.withdrawLimit - amount;
+
+  if (newLimit < 0) {
+    throw new Error("WITHDRAW_LIMIT_EXCEEDED");
+  }
+
+  return newLimit;
+};
+
+/* ================== SERVICES ================== */
 
 export async function depositMoney(value: DepositRequest) {
   const user = await accountApi.getAccountDetails(value.accountNumber);
 
-  if (!user) {
-    throw new Error("ACCOUNT_NOT_FOUND");
-  }
-
-  if (value.amount <= 0) {
-    throw new Error("INVALID_AMOUNT");
-  }
+  validateAccount(user, "ACCOUNT_NOT_FOUND");
+  validateAmount(value.amount);
+  validateStatus(user.status, "FRONZEN_ACCOUNT");
 
   const newBalance = user.balance + value.amount;
 
@@ -29,21 +78,16 @@ export async function depositMoney(value: DepositRequest) {
 export async function withdrawMoney(value: DepositRequest) {
   const user = await accountApi.getAccountDetails(value.accountNumber);
 
-  if (!user) {
-    throw new Error("ACCOUNT_NOT_FOUND");
-  }
-
-  if (value.amount <= 0) {
-    throw new Error("INVALID_AMOUNT");
-  }
+  validateAccount(user, "ACCOUNT_NOT_FOUND");
+  validateAmount(value.amount);
+  validateStatus(user.status, "FRONZEN_ACCOUNT");
 
   const newBalance = user.balance - value.amount;
+  validateBalance(newBalance);
 
-  if (newBalance < 100) {
-    throw new Error("INSUFFICIENT_FUNDS");
-  }
+  const newLimit = await handleWithdrawLimit(user, value.amount);
 
-  await accountApi.withdraw(newBalance, user.id);
+  await accountApi.withdraw(newBalance, user.id, newLimit);
 
   await transactionApi.addTransaction({
     accountNumber: value.accountNumber,
@@ -55,33 +99,35 @@ export async function withdrawMoney(value: DepositRequest) {
 }
 
 export async function transferMoney(value: TransferRequest) {
-  const sourceUser = await accountApi.getAccountDetails(value.sourceAccountNumber);
-
-  if (!sourceUser) {
-    throw new Error("SOURCE_ACCOUNT_NOT_FOUND");
+  if (value.sourceAccountNumber === value.destinationAccountNumber) {
+    throw new Error("SAME_ACCOUNT");
   }
 
-  if (value.amount <= 0) {
-    throw new Error("INVALID_AMOUNT");
-  }
+  const sourceUser = await accountApi.getAccountDetails(
+    value.sourceAccountNumber,
+  );
 
-  const sourceUserNewBalance = sourceUser.balance - value.amount;
+  validateAccount(sourceUser, "SOURCE_ACCOUNT_NOT_FOUND");
+  validateAmount(value.amount);
+  validateStatus(sourceUser.status, "FRONZEN_SOURCEACCOUNT");
 
-  if (sourceUserNewBalance < 100) {
-    throw new Error("INSUFFICIENT_FUNDS");
-  }
+  const newSourceBalance = sourceUser.balance - value.amount;
+  validateBalance(newSourceBalance);
 
-  const desUser = await accountApi.getAccountDetails(value.destinationAccountNumber);
+  const desUser = await accountApi.getAccountDetails(
+    value.destinationAccountNumber,
+  );
 
-  if (!desUser) {
-    throw new Error("DESTINATION_ACCOUNT_NOT_FOUND");
-  }
+  validateAccount(desUser, "DESTINATION_ACCOUNT_NOT_FOUND");
+  validateStatus(desUser.status, "FRONZEN_DESACCOUNT");
 
-  const desUserNewBalance = desUser.balance + value.amount;
+  const newLimit = await handleWithdrawLimit(sourceUser, value.amount);
 
-  await accountApi.withdraw(sourceUserNewBalance, sourceUser.id);
+  const newDesBalance = desUser.balance + value.amount;
 
-  await accountApi.deposit(desUserNewBalance, desUser.id);
+  await accountApi.withdraw(newSourceBalance, sourceUser.id, newLimit);
+
+  await accountApi.deposit(newDesBalance, desUser.id);
 
   await transactionApi.addTransaction({
     accountNumber: value.sourceAccountNumber,
@@ -90,12 +136,4 @@ export async function transferMoney(value: TransferRequest) {
     transactionDate: new Date(),
     description: value.description,
   });
-
-  // await transactionApi.addTransaction({
-  //   accountNumber: value.destinationAccountNumber,
-  //   type: "Transfer",
-  //   amount: value.amount,
-  //   transactionDate: new Date(),
-  //   description: value.description,
-  // });
 }

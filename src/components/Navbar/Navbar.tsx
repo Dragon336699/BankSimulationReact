@@ -1,4 +1,4 @@
-import { Menu, Dropdown, Avatar, Button } from "antd";
+import { Menu, Dropdown, Avatar } from "antd";
 import type { MenuProps } from "antd";
 import { UserOutlined, LogoutOutlined, BankOutlined } from "@ant-design/icons";
 import { Link, useLocation } from "react-router-dom";
@@ -25,7 +25,7 @@ const Navbar: React.FC = () => {
       icon: <UserOutlined />,
     },
     {
-      type: 'divider',
+      type: "divider",
     },
     {
       key: "logout",
@@ -38,7 +38,10 @@ const Navbar: React.FC = () => {
   return (
     <nav className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-gray-200">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-2">
-        <Link to="/" className="flex items-center gap-2 text-xl font-bold text-primary">
+        <Link
+          to="/"
+          className="flex items-center gap-2 text-xl font-bold text-primary"
+        >
           <BankOutlined className="text-2xl" />
           <span>BankSim</span>
         </Link>
@@ -53,14 +56,20 @@ const Navbar: React.FC = () => {
         </div>
 
         <div className="flex items-center gap-4">
-          <Dropdown menu={{ items: userMenuItems }} placement="bottomRight" arrow>
+          <Dropdown
+            menu={{ items: userMenuItems }}
+            placement="bottomRight"
+            arrow
+          >
             <div className="flex items-center gap-2 cursor-pointer p-1 hover:bg-gray-100 rounded-full transition-colors">
               <Avatar
                 size="middle"
                 icon={<UserOutlined />}
                 className="bg-primary"
               />
-              <span className="hidden sm:inline font-medium text-gray-700">John Doe</span>
+              <span className="hidden sm:inline font-medium text-gray-700">
+                Bảo Long
+              </span>
             </div>
           </Dropdown>
         </div>
@@ -70,4 +79,3 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
-

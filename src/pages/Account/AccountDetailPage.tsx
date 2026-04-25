@@ -50,13 +50,25 @@ export default function AccountDetailPage() {
     <div className="p-8">
       <h1 className="text-2xl font-bold mb-4">Account Details</h1>
       <div className="flex gap-3 mb-4">
-        <Button onClick={() => setIsDepositModalOpen(true)} size="large">
+        <Button
+          disabled={accountDetails.status === "Active" ? false : true}
+          onClick={() => setIsDepositModalOpen(true)}
+          size="large"
+        >
           Deposit
         </Button>
-        <Button onClick={() => setIsWithdrawModalOpen(true)} size="large">
+        <Button
+          disabled={accountDetails.status === "Active" ? false : true}
+          onClick={() => setIsWithdrawModalOpen(true)}
+          size="large"
+        >
           Withdraw
         </Button>
-        <Button onClick={() => setIsTransferModalOpen(true)} size="large">
+        <Button
+          disabled={accountDetails.status === "Active" ? false : true}
+          onClick={() => setIsTransferModalOpen(true)}
+          size="large"
+        >
           Transfer
         </Button>
       </div>

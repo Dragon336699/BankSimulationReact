@@ -1,12 +1,35 @@
-import type { TransactionResponse, TransactionType } from "../../transaction/types/transaction.types";
+import type {
+  TransactionResponse,
+  TransactionType,
+} from "../../transaction/types/transaction.types";
 import GenericCard from "../../../components/Antd/Cards/GenericCard";
-import { Table } from "antd";
+import { Table, Select } from "antd";
+import { useState } from "react";
 
 export default function TransactionHistory({
   transactions,
 }: {
   transactions: TransactionResponse[];
 }) {
+  const options = [];
+
+  const [filteredTransaction, setFilteredTransactions] = useState<TransactionResponse[]>(transactions);
+
+  options.push(
+    {
+      label: "Deposit",
+      value: "Deposit",
+    },
+    {
+      label: "Withdraw",
+      value: "Withdraw",
+    },
+    {
+      label: "Transfer",
+      value: "Transfer",
+    },
+  );
+
   const columns = [
     {
       title: "Account Number",
@@ -48,9 +71,26 @@ export default function TransactionHistory({
     },
   ];
 
+  const handleFilter = (value: string[]) => {
+    if (value.length === 0) {
+      return setFilteredTransactions(transactions);
+    } 
+
+    const filtered = transactions.filter(t => value.includes(t.type));
+    setFilteredTransactions(filtered);
+  };
+
   return (
     <GenericCard title="Transaction History">
-      <Table dataSource={transactions} columns={columns}></Table>
+      <Select
+        mode="multiple"
+        allowClear
+        style={{ width: "100%" }}
+        placeholder="Please select type of transaction you want to filter"
+        onChange={handleFilter}
+        options={options}
+      />
+      <Table dataSource={filteredTransaction} columns={columns}></Table>
     </GenericCard>
   );
 }

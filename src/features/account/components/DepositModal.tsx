@@ -24,6 +24,8 @@ export default function DepositModal({ open, onClose, accountNumber }: Props) {
           showMessage("error", "Account number does not exist!");
         } else if (error.message === "INVALID_AMOUNT") {
           showMessage("error", "Invalid amount!");
+        } else if (error.message === "FRONZEN_ACCOUNT") {
+          showMessage("error", "Account is frozen!");
         } else {
           showMessage("error", "Deposit failed!");
         }
