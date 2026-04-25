@@ -10,8 +10,11 @@ import TransferModal from "../../features/account/components/TransferModal";
 import type { TransactionResponse } from "../../features/transaction/types/transaction.types";
 import { transactionApi } from "../../features/transaction/apis/transaction.api";
 import TransactionHistory from "../../features/account/components/TransactionHistory";
+import { useAppMessage } from "../../app/hooks/useAppMessage";
 
 export default function AccountDetailPage() {
+  const { contextHolder, showMessage } = useAppMessage();
+
   const [isDepositModalOpen, setIsDepositModalOpen] = useState(false);
   const [isWithdrawModalOpen, setIsWithdrawModalOpen] = useState(false);
   const [isTransferModalOpen, setIsTransferModalOpen] = useState(false);
@@ -34,8 +37,14 @@ export default function AccountDetailPage() {
         const data =
           await transactionApi.getTransactionsByAccountNumber(accountNumber);
         setTransactions(data);
-      } catch (err) {
-        console.log(err);
+      } catch (error: unknown) {
+        let message = "Something went wrong while toggling status";
+
+        if (error instanceof Error) {
+          message = error.message;
+        }
+
+        showMessage("error", message);
       }
     };
 
@@ -48,6 +57,7 @@ export default function AccountDetailPage() {
 
   return (
     <div className="p-8">
+      {contextHolder}
       <h1 className="text-2xl font-bold mb-4">Account Details</h1>
       <div className="flex gap-3 mb-4">
         <Button

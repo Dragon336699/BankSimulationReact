@@ -8,16 +8,23 @@ import { useAppMessage } from "../../../app/hooks/useAppMessage";
 export default function AccountList() {
   const [accounts, setAccounts] = useState<AccountResponse[]>([]);
   const { contextHolder, showMessage } = useAppMessage();
-  const getAllAccounts = async () => {
-    try {
-      const response = await accountApi.getAllAccounts();
-      setAccounts(response.data);
-    } finally {
-      console.log("Done");
-    }
-  };
 
   useEffect(() => {
+    const getAllAccounts = async () => {
+      try {
+        const response = await accountApi.getAllAccounts();
+        setAccounts(response.data);
+      } catch (error) {
+        let message = "Something went wrong while toggling status";
+
+        if (error instanceof Error) {
+          message = error.message;
+        }
+
+        showMessage("error", message);
+      }
+    };
+    
     getAllAccounts();
   }, []);
 
@@ -76,7 +83,11 @@ export default function AccountList() {
         <span
           className={value === "Frozen" ? "text-red-600" : "text-green-600"}
         >
-          <Badge className="mb-2" color={value === "Frozen" ? "red" : "green"} count={value} />
+          <Badge
+            className="mb-2"
+            color={value === "Frozen" ? "red" : "green"}
+            count={value}
+          />
         </span>
       ),
     },

@@ -6,8 +6,11 @@ import type {
 import { transactionApi } from "../apis/transaction.api";
 import { Table } from "antd";
 import { Select } from "antd";
+import { useAppMessage } from "../../../app/hooks/useAppMessage";
 
 export default function TransactionList() {
+  const { contextHolder, showMessage } = useAppMessage();
+
   const [transactions, setTransactions] = useState<TransactionResponse[]>([]);
 
   const [selectedType, setSelectedType] = useState<string[]>([]);
@@ -37,8 +40,14 @@ export default function TransactionList() {
             new Date(a.transactionDate).getTime(),
         );
         setTransactions(res.data);
-      } catch (err) {
-        console.log(err);
+      } catch (error: unknown) {
+        let message = "Something went wrong while toggling status";
+
+        if (error instanceof Error) {
+          message = error.message;
+        }
+
+        showMessage("error", message);
       }
     };
 
@@ -102,6 +111,7 @@ export default function TransactionList() {
 
   return (
     <>
+      {contextHolder}
       <Select
         mode="multiple"
         allowClear
